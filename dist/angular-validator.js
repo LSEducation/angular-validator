@@ -32,12 +32,10 @@ angular.module('angularValidator')
         });
 
         var formChangeWatcher = scope.$watch(
-          function () {
-            return angular.element(element)[0].length;
-          },
+          function () { return DOMForm.length; },
           function () {
             destroyWatchers();
-            setupWatches(angular.element(element)[0]);
+            setupWatches(DOMForm);
           }
         );
 
@@ -148,7 +146,7 @@ angular.module('angularValidator')
           }
 
           // Only add validation messages if form has been submitted
-          if (scope[element.form.name].submitted) {
+          if (scopeForm.submitted) {
 
             if (scopeElementModel.$error.required) {
               // If there is a custom required message display it
@@ -236,7 +234,7 @@ angular.module('angularValidator')
           }
 
           // Only add validation classes if form has been submitted
-          if (scope[element.form.name].submitted) {
+          if (scopeForm.submitted) {
             if (formField.$invalid) {
               $element.parent().addClass('has-error');
 
@@ -271,7 +269,8 @@ angular.module('angularValidator')
       }
     };
   }
-);;// Workaround for bug #1404
+);
+;// Workaround for bug #1404
 // https://github.com/angular/angular.js/issues/1404
 // Source: http://plnkr.co/edit/hSMzWC?p=preview
 angular.module('angularValidator')
