@@ -127,7 +127,7 @@ angular.module('angularValidator').directive('angularValidator',
 
                 function checkElementValidity(element) {
                     // If element has a custom validation function
-                    if ("validator" in element.attributes) {
+                    if ("validator" in element.attributes && scopeForm[element.name]) {
                         // Call the custom validator function
                         var element_scope = angular.element(element).scope();
                         var isElementValid = element_scope.$eval(element.attributes.validator.value);
